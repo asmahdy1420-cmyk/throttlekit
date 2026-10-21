@@ -7,6 +7,18 @@ atomic Redis backend (one Lua script per algorithm), declarative policies, and a
 pure ASGI middleware for FastAPI and Starlette that answers `429` with
 `Retry-After` and `RateLimit-*` headers.
 
+## Screenshots
+
+Each algorithm against the same traffic: a limit of 5 per second, with bursts of 5, 5, 3 and 5 requests at 0.8 s, 1.1 s, 1.5 s and 2.4 s. Green `#` is allowed, red `x` is denied. Fixed window lets 10 through across the boundary at 1.0 s. A manual clock drives time, so the run is repeatable. The demo script is a short loop over `backend.hit` and is not part of the repo.
+
+![Five algorithms handling the same bursts on the in-memory backend](docs/screenshots/algorithms-burst.png)
+
+The same run through the Lua scripts on a real Redis 7 container gives identical decisions to the in-memory Python code.
+
+![Same bursts through the Redis Lua backend](docs/screenshots/redis-lua-burst.png)
+
+## Features
+
 - **Algorithms:** fixed window, sliding window log, sliding window counter, token bucket, GCRA
 - **Backends:** in-memory (single process) and Redis (shared, atomic via `register_script`)
 - **Policies:** per route, per API key, per IP, or any composite key; several rates per key (`10/s` and `1000/h`)
