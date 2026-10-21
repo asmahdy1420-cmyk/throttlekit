@@ -1,6 +1,6 @@
 # throttlekit
 
-![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white) ![Redis](https://img.shields.io/badge/Redis-Lua_scripts-DC382D?logo=redis&logoColor=white) ![ASGI](https://img.shields.io/badge/ASGI-middleware-4B8BBE) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 Rate limiting for Python services. Five algorithms, an in-memory backend and an
 atomic Redis backend (one Lua script per algorithm), declarative policies, and a
